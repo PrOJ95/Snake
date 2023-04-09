@@ -21,26 +21,26 @@ namespace SnakeGame
                 {
                     StartGame();
                 }
-                else
+            }
+            else
+            {
+                if (Input.KeyPress(Keys.Right) && Settings.Direction != Directions.Left)
                 {
-                    if (Input.KeyPress(Keys.Right) && Settings.Direction != Directions.Left)
-                    {
-                        Settings.Direction = Directions.Right;
-                    }
-                    else if (Input.KeyPress(Keys.Left) && Settings.Direction != Directions.Right)
-                    {
-                        Settings.Direction = Directions.Left;
-                    }
-                    else if (Input.KeyPress(Keys.Up) && Settings.Direction != Directions.Down)
-                    {
-                        Settings.Direction = Directions.Up;
-                    }
-                    else if (Input.KeyPress(Keys.Down) && Settings.Direction != Directions.Up)
-                    {
-                        Settings.Direction = Directions.Down;
-                    }
-                    MovePlayer();
+                    Settings.Direction = Directions.Right;
                 }
+                else if (Input.KeyPress(Keys.Left) && Settings.Direction != Directions.Right)
+                {
+                    Settings.Direction = Directions.Left;
+                }
+                else if (Input.KeyPress(Keys.Up) && Settings.Direction != Directions.Down)
+                {
+                    Settings.Direction = Directions.Up;
+                }
+                else if (Input.KeyPress(Keys.Down) && Settings.Direction != Directions.Up)
+                {
+                    Settings.Direction = Directions.Down;
+                }
+                MovePlayer();
             }
             pbCanvas.Invalidate();
         }
@@ -67,7 +67,7 @@ namespace SnakeGame
             }
             else
             {
-                string gameOver = $"Game Over\nFinal Score is{Settings.Score}\nPress enter to restart...";
+                string gameOver = $"Game Over\nFinal Score is {Settings.Score}\nPress enter to restart...";
                 lblGameEndText.Text = gameOver;
                 lblGameEndText.Visible = true;
             }
@@ -120,11 +120,11 @@ namespace SnakeGame
                     {
                         EatFood();
                     }
-                    else
-                    {
-                        Snake[currentSegmentIndex].xPosition = Snake[currentSegmentIndex - 1].xPosition;
-                        Snake[currentSegmentIndex].yPosition = Snake[currentSegmentIndex - 1].yPosition;
-                    }
+                }
+                else
+                {
+                    Snake[currentSegmentIndex].xPosition = Snake[currentSegmentIndex - 1].xPosition;
+                    Snake[currentSegmentIndex].yPosition = Snake[currentSegmentIndex - 1].yPosition;
                 }
             }
         }

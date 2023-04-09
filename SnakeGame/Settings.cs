@@ -24,7 +24,7 @@ namespace SnakeGame
             Score = 0;
             Points = 100;
             GameOver = false;
-            Direction = Directions.Up;
+            Direction = Directions.Right;
         }
     }
 }
