@@ -130,7 +130,7 @@ namespace SnakeGame
         }
         private bool IsOutOfBounds(int x, int y, int maxX, int maxY)
         {
-            return x < 0 || y < 0 || x > maxX || y > maxY;
+            return x < 0 || y < 0 || x >= maxX || y >= maxY;
         }
         private void GenerateNewFood()
         {
