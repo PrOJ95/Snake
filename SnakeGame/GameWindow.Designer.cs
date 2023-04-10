@@ -73,11 +73,12 @@
             lblGameEndText.BackColor = Color.Black;
             lblGameEndText.Font = new Font("Malgun Gothic", 14.25F, FontStyle.Bold, GraphicsUnit.Point);
             lblGameEndText.ForeColor = Color.Red;
-            lblGameEndText.Location = new Point(380, 200);
+            lblGameEndText.Location = new Point(360, 200);
             lblGameEndText.Name = "lblGameEndText";
             lblGameEndText.Size = new Size(150, 25);
             lblGameEndText.TabIndex = 3;
             lblGameEndText.Text = "Game End Text";
+            lblGameEndText.TextAlign = ContentAlignment.MiddleCenter;
             // 
             // GameWindow
             // 
