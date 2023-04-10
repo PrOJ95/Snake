@@ -163,6 +163,8 @@ namespace SnakeGame
             int maxYposition = pbCanvas.Size.Height / Settings.Height;
             Random foodPositionRandom = new Random();
             Food = new Circle(foodPositionRandom.Next(0, maxXposition), foodPositionRandom.Next(0, maxYposition));
+            Settings.Speed++;
+            gameTimer.Interval = 1000 / Settings.Speed;
         }
         private void EatFood()
         {
