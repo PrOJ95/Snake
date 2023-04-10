@@ -15,34 +15,35 @@ namespace SnakeGame
         }
         private void UpdateScreen(object sender, EventArgs e)
         {
-            if (Settings.GameOver == true)
+            if (!Settings.GameOver)
             {
-                if (Input.KeyPress(Keys.Enter))
-                {
-                    StartGame();
-                }
-            }
-            else
-            {
-                if (Input.KeyPress(Keys.Right) && Settings.Direction != Directions.Left)
-                {
-                    Settings.Direction = Directions.Right;
-                }
-                else if (Input.KeyPress(Keys.Left) && Settings.Direction != Directions.Right)
-                {
-                    Settings.Direction = Directions.Left;
-                }
-                else if (Input.KeyPress(Keys.Up) && Settings.Direction != Directions.Down)
-                {
-                    Settings.Direction = Directions.Up;
-                }
-                else if (Input.KeyPress(Keys.Down) && Settings.Direction != Directions.Up)
-                {
-                    Settings.Direction = Directions.Down;
-                }
+                HandleInput();
                 MovePlayer();
             }
+            else if (Input.KeyPress(Keys.Enter))
+            {
+                StartGame();
+            }
             pbCanvas.Invalidate();
+        }
+        private static void HandleInput()
+        {
+            if (Input.KeyPress(Keys.Right) && Settings.Direction != Directions.Left)
+            {
+                Settings.Direction = Directions.Right;
+            }
+            else if (Input.KeyPress(Keys.Left) && Settings.Direction != Directions.Right)
+            {
+                Settings.Direction = Directions.Left;
+            }
+            else if (Input.KeyPress(Keys.Up) && Settings.Direction != Directions.Down)
+            {
+                Settings.Direction = Directions.Up;
+            }
+            else if (Input.KeyPress(Keys.Down) && Settings.Direction != Directions.Up)
+            {
+                Settings.Direction = Directions.Down;
+            }
         }
         private void KeyIsDown(object sender, KeyEventArgs e)
         {
@@ -152,7 +153,7 @@ namespace SnakeGame
                 EatFood();
             }
         }
-        private bool IsOutOfBounds(int x, int y, int maxX, int maxY)
+        private static bool IsOutOfBounds(int x, int y, int maxX, int maxY)
         {
             return x < 0 || y < 0 || x >= maxX || y >= maxY;
         }
@@ -171,7 +172,7 @@ namespace SnakeGame
             lblScoreNumber.Text = Settings.Score.ToString();
             GenerateNewFood();
         }
-        private void Die()
+        private static void Die()
         {
             Settings.GameOver = true;
         }
