@@ -101,6 +101,7 @@ namespace SnakeGame
         {
             lblGameEndText.Visible = false;
             new Settings();
+            Blocker.Clear();
             Snake.Clear();
             Circle head = new(10, 5);
             Snake.Add(head);
