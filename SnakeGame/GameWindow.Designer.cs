@@ -52,7 +52,7 @@
             // 
             lblScoreText.AutoSize = true;
             lblScoreText.Font = new Font("Malgun Gothic", 14.25F, FontStyle.Bold, GraphicsUnit.Point);
-            lblScoreText.Location = new Point(12, 577);
+            lblScoreText.Location = new Point(13, 588);
             lblScoreText.Name = "lblScoreText";
             lblScoreText.Size = new Size(66, 25);
             lblScoreText.TabIndex = 1;
@@ -62,7 +62,8 @@
             // 
             lblScoreNumber.AutoSize = true;
             lblScoreNumber.Font = new Font("Malgun Gothic", 14.25F, FontStyle.Bold, GraphicsUnit.Point);
-            lblScoreNumber.Location = new Point(84, 577);
+            lblScoreNumber.ImageAlign = ContentAlignment.MiddleLeft;
+            lblScoreNumber.Location = new Point(76, 589);
             lblScoreNumber.Name = "lblScoreNumber";
             lblScoreNumber.Size = new Size(23, 25);
             lblScoreNumber.TabIndex = 2;
@@ -85,7 +86,7 @@
             // 
             label1.AutoSize = true;
             label1.Font = new Font("Malgun Gothic", 14.25F, FontStyle.Bold, GraphicsUnit.Point);
-            label1.Location = new Point(552, 577);
+            label1.Location = new Point(552, 588);
             label1.Name = "label1";
             label1.Size = new Size(341, 25);
             label1.TabIndex = 4;
