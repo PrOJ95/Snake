@@ -2,8 +2,12 @@ namespace SnakeGame
 {
     public partial class GameWindow : Form
     {
+
+        //TODO: Add start button so the game doesn't immediately begin, add difficulty menu where user can toggle speedup and blocker settings
+
         private List<Circle> Snake = new();
         private Circle Food = new();
+        private List<Circle> Blocker = new();
         public GameWindow()
         {
             InitializeComponent();
@@ -64,6 +68,7 @@ namespace SnakeGame
             {
                 DrawSnake(canvas);
                 DrawFood(canvas);
+                DrawBlocker(canvas);
             }
         }
         private void DrawSnake(Graphics canvas)
@@ -78,6 +83,13 @@ namespace SnakeGame
         private void DrawFood(Graphics canvas)
         {
             canvas.FillEllipse(Brushes.Red, new Rectangle(Food.xPosition * Settings.Width, Food.yPosition * Settings.Height, Settings.Width, Settings.Height));
+        }
+        private void DrawBlocker(Graphics canvas)
+        {
+            for (int i = 0; i < Blocker.Count; i++)
+            {
+                canvas.FillEllipse(Brushes.Gold, new Rectangle(Blocker[i].xPosition * Settings.Width, Blocker[i].yPosition * Settings.Height, Settings.Width, Settings.Height));
+            }
         }
         private void GameOver()
         {
@@ -152,6 +164,13 @@ namespace SnakeGame
             {
                 EatFood();
             }
+            foreach (Circle blocker in Blocker)
+            {
+                if (Snake[0].xPosition == blocker.xPosition && Snake[0].yPosition == blocker.yPosition)
+                {
+                    Die();
+                }
+            }
         }
         private static bool IsOutOfBounds(int x, int y, int maxX, int maxY)
         {
@@ -161,18 +180,29 @@ namespace SnakeGame
         {
             int maxXposition = pbCanvas.Size.Width / Settings.Width;
             int maxYposition = pbCanvas.Size.Height / Settings.Height;
-            Random foodPositionRandom = new Random();
+            Random foodPositionRandom = new();
             Food = new Circle(foodPositionRandom.Next(0, maxXposition), foodPositionRandom.Next(0, maxYposition));
             Settings.Speed++;
             gameTimer.Interval = 1000 / Settings.Speed;
+            Random blockerChanceToSpawn = new();
+            if (blockerChanceToSpawn.Next(0, 19) <= 1)
+            {
+                GenerateBlocker(maxXposition, maxYposition);
+            }
         }
         private void EatFood()
         {
-            Circle body = new(Snake[Snake.Count - 1].xPosition, Snake[Snake.Count - 1].yPosition);
+            Circle body = new(Snake[^1].xPosition, Snake[^1].yPosition);
             Snake.Add(body);
             Settings.Score += Settings.Points;
             lblScoreNumber.Text = Settings.Score.ToString();
             GenerateNewFood();
+        }
+        private void GenerateBlocker(int maxXposition, int maxYposition)
+        {
+            Random blockerPositionRandom = new();
+            Circle blocker = new(blockerPositionRandom.Next(0, maxXposition), blockerPositionRandom.Next(0, maxYposition));
+            Blocker.Add(blocker);
         }
         private static void Die()
         {

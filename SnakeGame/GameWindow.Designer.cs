@@ -34,6 +34,7 @@
             lblScoreText = new Label();
             lblScoreNumber = new Label();
             lblGameEndText = new Label();
+            label1 = new Label();
             ((System.ComponentModel.ISupportInitialize)pbCanvas).BeginInit();
             SuspendLayout();
             // 
@@ -80,11 +81,22 @@
             lblGameEndText.Text = "Game End Text";
             lblGameEndText.TextAlign = ContentAlignment.MiddleCenter;
             // 
+            // label1
+            // 
+            label1.AutoSize = true;
+            label1.Font = new Font("Malgun Gothic", 14.25F, FontStyle.Bold, GraphicsUnit.Point);
+            label1.Location = new Point(552, 577);
+            label1.Name = "label1";
+            label1.Size = new Size(341, 25);
+            label1.TabIndex = 4;
+            label1.Text = "Eat RED food, avoid GOLD blockers!";
+            // 
             // GameWindow
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(905, 627);
+            Controls.Add(label1);
             Controls.Add(lblGameEndText);
             Controls.Add(lblScoreNumber);
             Controls.Add(lblScoreText);
@@ -106,5 +118,6 @@
         private Label lblScoreText;
         private Label lblScoreNumber;
         private Label lblGameEndText;
+        private Label label1;
     }
 }
