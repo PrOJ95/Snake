@@ -35,6 +35,8 @@
             lblScoreNumber = new Label();
             lblGameEndText = new Label();
             label1 = new Label();
+            StartButton = new Button();
+            UserSettingsButton = new Button();
             ((System.ComponentModel.ISupportInitialize)pbCanvas).BeginInit();
             SuspendLayout();
             // 
@@ -81,6 +83,7 @@
             lblGameEndText.TabIndex = 3;
             lblGameEndText.Text = "Game End Text";
             lblGameEndText.TextAlign = ContentAlignment.MiddleCenter;
+            lblGameEndText.Visible = false;
             // 
             // label1
             // 
@@ -92,11 +95,33 @@
             label1.TabIndex = 4;
             label1.Text = "Eat RED food, avoid GOLD blockers!";
             // 
+            // StartButton
+            // 
+            StartButton.Location = new Point(284, 591);
+            StartButton.Name = "StartButton";
+            StartButton.Size = new Size(75, 23);
+            StartButton.TabIndex = 5;
+            StartButton.Text = "Start";
+            StartButton.UseVisualStyleBackColor = true;
+            StartButton.Click += OnClick_StartButton;
+            // 
+            // UserSettingsButton
+            // 
+            UserSettingsButton.Location = new Point(411, 591);
+            UserSettingsButton.Name = "UserSettingsButton";
+            UserSettingsButton.Size = new Size(75, 23);
+            UserSettingsButton.TabIndex = 6;
+            UserSettingsButton.Text = "Settings";
+            UserSettingsButton.UseVisualStyleBackColor = true;
+            UserSettingsButton.Click += ShowUserSettings;
+            // 
             // GameWindow
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(905, 627);
+            Controls.Add(UserSettingsButton);
+            Controls.Add(StartButton);
             Controls.Add(label1);
             Controls.Add(lblGameEndText);
             Controls.Add(lblScoreNumber);
@@ -120,5 +145,7 @@
         private Label lblScoreNumber;
         private Label lblGameEndText;
         private Label label1;
+        private Button StartButton;
+        private Button UserSettingsButton;
     }
 }

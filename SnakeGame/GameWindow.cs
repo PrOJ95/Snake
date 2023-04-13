@@ -8,14 +8,14 @@ namespace SnakeGame
         private List<Circle> Snake = new();
         private Circle Food = new();
         private List<Circle> Blocker = new();
+        bool blockersActive = false;
+        bool speedUpActive = false;
         public GameWindow()
         {
             InitializeComponent();
             new Settings();
             gameTimer.Interval = 1000 / Settings.Speed;
             gameTimer.Tick += UpdateScreen;
-            gameTimer.Start();
-            StartGame();
         }
         private void UpdateScreen(object sender, EventArgs e)
         {
@@ -183,10 +183,13 @@ namespace SnakeGame
             int maxYposition = pbCanvas.Size.Height / Settings.Height;
             Random foodPositionRandom = new();
             Food = new Circle(foodPositionRandom.Next(0, maxXposition), foodPositionRandom.Next(0, maxYposition));
-            Settings.Speed++;
-            gameTimer.Interval = 1000 / Settings.Speed;
+            if (speedUpActive)
+            {
+                Settings.Speed++;
+                gameTimer.Interval = 1000 / Settings.Speed;
+            }
             Random blockerChanceToSpawn = new();
-            if (blockerChanceToSpawn.Next(0, 19) <= 1)
+            if (blockerChanceToSpawn.Next(0, 19) <= 1 && blockersActive)
             {
                 GenerateBlocker(maxXposition, maxYposition);
             }
@@ -208,6 +211,20 @@ namespace SnakeGame
         private static void Die()
         {
             Settings.GameOver = true;
+        }
+
+        private void ShowUserSettings(object sender, EventArgs e)
+        {
+            UserSettings UserSettings = new UserSettings();
+            gameTimer.Stop();
+            UserSettings.ShowDialog();
+        }
+
+        private void OnClick_StartButton(object sender, EventArgs e)
+        {
+            gameTimer.Start();
+            StartGame();
+            StartButton.Dispose();
         }
     }
 }
