@@ -1,15 +1,17 @@
+using System.Windows.Forms;
+
 namespace SnakeGame
 {
     public partial class GameWindow : Form
     {
 
-        //TODO: Add start button so the game doesn't immediately begin, add difficulty menu where user can toggle speedup and blocker settings
+        //TODO: let enter restart game without requiring esc beforehand
 
         private List<Circle> Snake = new();
         private Circle Food = new();
         private List<Circle> Blocker = new();
-        bool blockersActive = false;
-        bool speedUpActive = false;
+        internal static bool blockersActive = false;
+        internal static bool speedUpActive = false;
         public GameWindow()
         {
             InitializeComponent();
@@ -52,6 +54,10 @@ namespace SnakeGame
         private void KeyIsDown(object sender, KeyEventArgs e)
         {
             Input.ChangeState(e.KeyCode, true);
+            if (e.KeyCode == Keys.Escape)
+            {
+                this.ActiveControl = null;
+            }
         }
         private void KeyIsUp(object sender, KeyEventArgs e)
         {
@@ -106,6 +112,7 @@ namespace SnakeGame
             Circle head = new(10, 5);
             Snake.Add(head);
             lblScoreNumber.Text = Settings.Score.ToString();
+            UserSettingsButton.Enabled = false;
             GenerateNewFood();
         }
         private void MovePlayer()
@@ -208,9 +215,10 @@ namespace SnakeGame
             Circle blocker = new(blockerPositionRandom.Next(0, maxXposition), blockerPositionRandom.Next(0, maxYposition));
             Blocker.Add(blocker);
         }
-        private static void Die()
+        private void Die()
         {
             Settings.GameOver = true;
+            UserSettingsButton.Enabled = true;
         }
 
         private void ShowUserSettings(object sender, EventArgs e)
@@ -223,8 +231,12 @@ namespace SnakeGame
         private void OnClick_StartButton(object sender, EventArgs e)
         {
             gameTimer.Start();
-            StartGame();
             StartButton.Dispose();
+            StartGame();
+        }
+        internal void ResumeGame()
+        {
+            gameTimer.Start();
         }
     }
 }

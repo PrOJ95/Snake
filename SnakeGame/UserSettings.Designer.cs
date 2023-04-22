@@ -30,7 +30,7 @@
         {
             label1 = new Label();
             chkboxSpeedUpToggle = new CheckBox();
-            checkBox2 = new CheckBox();
+            chkboxBlockerToggle = new CheckBox();
             btnCloseSettings = new Button();
             SuspendLayout();
             // 
@@ -53,24 +53,25 @@
             chkboxSpeedUpToggle.Text = "Speed up after eating food";
             chkboxSpeedUpToggle.UseVisualStyleBackColor = true;
             // 
-            // checkBox2
+            // chkboxBlockerToggle
             // 
-            checkBox2.AutoSize = true;
-            checkBox2.Location = new Point(27, 12);
-            checkBox2.Name = "checkBox2";
-            checkBox2.Size = new Size(164, 19);
-            checkBox2.TabIndex = 2;
-            checkBox2.Text = "Randomly spawn blockers";
-            checkBox2.UseVisualStyleBackColor = true;
+            chkboxBlockerToggle.AutoSize = true;
+            chkboxBlockerToggle.Location = new Point(27, 12);
+            chkboxBlockerToggle.Name = "chkboxBlockerToggle";
+            chkboxBlockerToggle.Size = new Size(164, 19);
+            chkboxBlockerToggle.TabIndex = 2;
+            chkboxBlockerToggle.Text = "Randomly spawn blockers";
+            chkboxBlockerToggle.UseVisualStyleBackColor = true;
             // 
             // btnCloseSettings
             // 
-            btnCloseSettings.Location = new Point(66, 76);
+            btnCloseSettings.Location = new Point(77, 76);
             btnCloseSettings.Name = "btnCloseSettings";
             btnCloseSettings.Size = new Size(75, 23);
             btnCloseSettings.TabIndex = 3;
-            btnCloseSettings.Text = "button1";
+            btnCloseSettings.Text = "Save";
             btnCloseSettings.UseVisualStyleBackColor = true;
+            btnCloseSettings.Click += On_SaveButtonClick;
             // 
             // UserSettings
             // 
@@ -78,11 +79,13 @@
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(234, 111);
             Controls.Add(btnCloseSettings);
-            Controls.Add(checkBox2);
+            Controls.Add(chkboxBlockerToggle);
             Controls.Add(chkboxSpeedUpToggle);
             Controls.Add(label1);
             Name = "UserSettings";
-            Text = "MainMenu";
+            Text = "Settings";
+            this.FormClosing += this.SaveSettings;
+            this.Load += this.LoadSettings;
             ResumeLayout(false);
             PerformLayout();
         }
@@ -91,7 +94,7 @@
 
         private Label label1;
         private CheckBox chkboxSpeedUpToggle;
-        private CheckBox checkBox2;
+        private CheckBox chkboxBlockerToggle;
         private Button btnCloseSettings;
     }
 }

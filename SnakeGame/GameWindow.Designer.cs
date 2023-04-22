@@ -140,12 +140,12 @@
         #endregion
 
         private PictureBox pbCanvas;
-        private System.Windows.Forms.Timer gameTimer;
         private Label lblScoreText;
         private Label lblScoreNumber;
         private Label lblGameEndText;
         private Label label1;
         private Button StartButton;
         private Button UserSettingsButton;
+        internal System.Windows.Forms.Timer gameTimer;
     }
 }
