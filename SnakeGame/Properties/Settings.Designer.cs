@@ -22,5 +22,29 @@ namespace SnakeGame.Properties {
                 return defaultInstance;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool SpeedCheckboxState {
+            get {
+                return ((bool)(this["SpeedCheckboxState"]));
+            }
+            set {
+                this["SpeedCheckboxState"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool BlockerCheckboxState {
+            get {
+                return ((bool)(this["BlockerCheckboxState"]));
+            }
+            set {
+                this["BlockerCheckboxState"] = value;
+            }
+        }
     }
 }
