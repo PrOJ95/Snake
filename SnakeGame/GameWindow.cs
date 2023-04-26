@@ -219,13 +219,14 @@ namespace SnakeGame
         {
             Settings.GameOver = true;
             UserSettingsButton.Enabled = true;
+            this.ActiveControl = null;
         }
 
         private void ShowUserSettings(object sender, EventArgs e)
         {
             UserSettings UserSettings = new UserSettings();
-            gameTimer.Stop();
             UserSettings.ShowDialog();
+            this.ActiveControl = null;
         }
 
         private void OnClick_StartButton(object sender, EventArgs e)
@@ -233,10 +234,6 @@ namespace SnakeGame
             gameTimer.Start();
             StartButton.Dispose();
             StartGame();
-        }
-        internal void ResumeGame()
-        {
-            gameTimer.Start();
         }
     }
 }

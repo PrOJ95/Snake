@@ -32,8 +32,8 @@ namespace SnakeGame
 
         private void On_SaveButtonClick(object sender, EventArgs e)
         {
-            GameWindow.blockersActive = (chkboxSpeedUpToggle.Checked) ? true : false;
-            GameWindow.speedUpActive = (chkboxSpeedUpToggle.Checked) ? true : false;
+            GameWindow.blockersActive = chkboxBlockerToggle.Checked;
+            GameWindow.speedUpActive = chkboxSpeedUpToggle.Checked;
             Close();
         }
     }

@@ -114,6 +114,8 @@
             UserSettingsButton.Text = "Settings";
             UserSettingsButton.UseVisualStyleBackColor = true;
             UserSettingsButton.Click += ShowUserSettings;
+            UserSettingsButton.KeyDown += KeyIsDown;
+            UserSettingsButton.KeyUp += KeyIsUp;
             // 
             // GameWindow
             // 
@@ -145,7 +147,7 @@
         private Label lblGameEndText;
         private Label label1;
         private Button StartButton;
-        private Button UserSettingsButton;
         internal System.Windows.Forms.Timer gameTimer;
+        internal Button UserSettingsButton;
     }
 }
